@@ -1,0 +1,133 @@
+let g:ycm_python_binary_path = 'python'
+let g:airline_theme = 'base16_ocean'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:autopep8_disable_show_diff=1
+let g:pymode_python='python3'
+let g:pymode_options_colorcolumn=0
+let g:pymode_lint=0
+let g:gitgutter_enabled=0
+let g:pymode_options_number=0
+let g:formatters_javascript=['jsbeautify_javascript']
+let g:ctrlp_custom_ignore = 'venv\/.*'
+
+set nocompatible
+
+execute pathogen#infect()
+
+set guifont=PragmataPro\ 14
+"probably mac
+"set guifont=PragmataPro:h14
+set guioptions=r
+
+set statusline=
+set statusline+=%-3.3n\ 
+set statusline+=%f\ 
+set statusline+=%h%m%r%w
+set statusline+=[%{strlen(&ft)?&ft:'none'},
+set statusline+=%{strlen(&fenc)?&fenc:&enc},
+set statusline+=%{&fileformat}]
+set statusline+=%=
+set statusline+=%{synIDattr(synID(line(','),col('.'),1),'name')}\ 
+set statusline+=%b,0x%-8B\ 
+set statusline+=%-14.(%l,%c%V%)\ %<%P
+set laststatus=2
+
+set showcmd
+filetype on
+filetype plugin on
+syntax enable
+
+set autoindent
+set smartindent
+set expandtab
+set softtabstop=4
+set shiftwidth=4
+set tabstop=4
+set nospell
+set ignorecase
+set smartcase
+set incsearch
+set hlsearch
+set wildmenu
+set wildignore=*.o,*~,*.pyc,*.class
+set nofoldenable
+set nobackup
+set nowb
+set noswapfile
+set completeopt=menu
+
+colorscheme slate
+
+filetype plugin indent on
+syntax on
+
+hi StatusLine cterm=none ctermfg=2 ctermbg=0 guifg=#20a020 guibg=#204050
+hi Pmenu ctermfg=8 ctermbg=0 guifg=#bbbbbb guibg=#000000
+hi normal guifg=#bbbbbb guibg=#000000
+highlight Comment ctermfg=246
+highlight Special ctermfg=248
+highlight Statement ctermfg=248
+highlight Operator ctermfg=251
+highlight Identifier ctermfg=252
+highlight Function ctermfg=250
+highlight String ctermfg=37
+highlight PreProc ctermfg=252
+highlight Include ctermfg=252
+
+if filereadable("/home/paul/.vimrc.local")
+    source /home/paul/.vimrc.local
+endif
+
+autocmd BufWritePre *.js :Autoformat
+autocmd BufWritePre *.py :Autoformat
+
+set autowriteall
+:au FocusLost * silent! wa
+set hidden
+
+set mouse=a
+set clipboard=unnamed
+
+function! CtrlPCommand()
+    let c = 0
+    let wincount = winnr('$')
+    " Don't open it here if current buffer is not writable (e.g. NERDTree)
+    while !empty(getbufvar(+expand("<abuf>"), "&buftype")) && c < wincount
+        exec 'wincmd w'
+        let c = c + 1
+    endwhile
+    exec 'CtrlP'
+endfunction
+
+let g:ctrlp_cmd = 'call CtrlPCommand()'
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_python_exec = 'python3'
+
+command W w !sudo tee % >/dev/null
+set encoding=utf8
+
+let mapleader = ","
+nmap space /
+nmap <C-space> ?
+nmap <leader><cr> :noh<cr>
+nmap <leader>w :bdelete<cr>
+nmap <leader>s :w!<cr>
+nmap <leader>t :enew<cr>
+map <C-k> :NERDTreeFind<CR>
+map <C-j> :NERDTreeToggle<CR>
+map <F8> :YcmCompleter GoToDefinition<CR>
+map <F7> :YcmCompleter GetDoc<CR>
+map <F6> :pclose!<CR>
+map <C-h> :bp<CR>
+map <C-l> :bn<CR>
+
+

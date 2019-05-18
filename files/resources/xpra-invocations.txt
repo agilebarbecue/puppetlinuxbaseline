@@ -1,0 +1,4 @@
+
+XPRA_X264_PROFILE=high444 XPRA_X264_SUPPORT_24BPP=true XPRA_X264_TUNE=zerolatency XPRA_X264_THREADS=2 xpra start --start-child=google-chrome --min-speed=80 --bandwidth-limit=15Mbps -z1 --bind-tcp=127.0.0.1:55901 --dpi=96 --daemon=no
+
+xpra attach tcp://localhost:55901 --video-scaling=off --bandwidth-limit=15Mbps --dpi=96 --desktop-scaling=off -z1 --min-speed=80 --auto-refresh-delay=0.4 --daemon=no

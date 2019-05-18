@@ -1,0 +1,97 @@
+.header-bar.default-decoration {
+ padding-top: 0px;
+ padding-bottom: 0px;
+ font-size: 0.8em;
+ font-weight: normal;
+}
+
+.header-bar.default-decoration .button.titlebutton {
+ padding: 0px;
+ padding-top: 0px;
+ padding-bottom: 0px;
+ font-weight: normal;
+}
+
+/* shrink headerbars (don't forget semicolons after each property) */
+headerbar {
+    min-height: 0px;
+    padding-left: 2px; /* same as childrens vertical margins for nicer proportions */
+    padding-right: 2px;
+    background-color: #2d2d2d;
+    font-weight: normal;
+}
+
+headerbar entry,
+headerbar spinbutton,
+headerbar button,
+headerbar separator {
+    margin-top: 0px; /* same as headerbar side padding for nicer proportions */
+    margin-bottom: 0px;
+}
+
+/* shrink ssd titlebars */
+.default-decoration {
+    min-height: 0; /* let the entry and button drive the titlebar size */
+    padding: 0px;
+    background-color: #2d2d2d;
+    font-weight: normal;
+}
+
+.default-decoration .titlebutton {
+    min-height: 0px; /* tweak these two props to reduce button size */
+    min-width: 0px;
+    font-weight: normal;
+}
+
+window.ssd headerbar.titlebar {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    min-height: 0;
+    font-weight: normal;
+}
+
+window.ssd headerbar.titlebar button.titlebutton {
+    padding-top: 0px;
+    padding-bottom:0px;
+    min-height: 0;
+    font-weight: normal;
+}
+
+TerminalWindow .notebook {
+    border: 0;
+    padding: 0;
+}
+
+TerminalWindow .notebook tab:active {
+  border: 0;
+}
+
+TerminalWindow .notebook tab {
+}
+
+TerminalWindow .notebook .button,
+TerminalWindow .notebook .button:active {
+    padding: 0 0 0 10;
+    background-image: none;
+    border: 0;
+}
+
+notebook tab {
+  min-height: 0;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+notebook tab button {
+  min-height: 0;
+  min-width: 0;
+  padding: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+notebook button {
+  min-height: 0;
+  min-width: 0;
+  padding: 0px;
+}

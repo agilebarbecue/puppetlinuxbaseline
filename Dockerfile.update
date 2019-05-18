@@ -1,0 +1,6 @@
+FROM devbox-files:latest
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get -yq update && apt-get -yq dist-upgrade
+ENV DEBIAN_FRONTEND=
+COPY update-setup.sh /tmp/update-setup.sh
+RUN bash /tmp/update-setup.sh

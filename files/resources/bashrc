@@ -1,0 +1,50 @@
+. /etc/git-prompt.sh
+alias ls='ls --color=auto'
+export PS1='\[\033]0;\u@\h: \w\a\007\]\[\033[00;34m\]\u@\h\[\033[00m\]:\[\033[00;34m\]\w\[\033[00m\]$(__git_ps1 " (%s)")\$ '
+[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+export MAKEFLAGS=-j8 
+export JAVA_HOME=/opt/java
+#for sway
+export _JAVA_AWT_WM_NONREPARENTING=1
+export XKB_DEFAULT_LAYOUT=pl
+export XKB_DEFAULT_OPTIONS=caps:ctrl_modifier
+
+export EDITOR=vim
+
+set -o vi
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+#ssh-agent -a /tmp/ssh-paul-sock >/dev/null 2>&1 
+#export SSH_AUTH_SOCK=/tmp/ssh-paul-sock
+
+gpg-agent --daemon 2>/dev/null
+
+unset SSH_AGENT_PID
+if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+fi
+if [ "${DEVCONTAINER}" == "true" ]; then
+  export SSH_AUTH_SOCK=/tmp/S.gpg-agent.ssh
+fi
+
+#some default paths for things we probably install in /opt
+export PATH=/opt/google-cloud-sdk/bin:/opt/istio/bin:/opt/java/bin:/opt/scala/bin:/opt/maven/bin:/opt/ant/bin:/opt/go/bin:/opt/node/bin:/opt/activator:/opt/gradle/bin:/opt/sbt/bin:$PATH
+
+if [[ -f /usr/bin/vimx ]]; then
+    alias vim=vimx
+    alias vi=vimx
+fi
+
+#we control this (main) one - so source a local one that's not controlled by puppet
+if [[ -f ~/.bashrc.local ]]; then
+    . ~/.bashrc.local
+fi
+
+virt() {
+  GDK_SCALE=1 GDK_BACKEND=x11 DISPLAY=:0 virt-viewer -c qemu:///system $1
+}
+
+virtm() {
+  GDK_SCALE=1 GDK_BACKEND=x11 DISPLAY=:0 virt-manager
+}

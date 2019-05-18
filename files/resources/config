@@ -1,0 +1,13 @@
+Host git.riskless.io git-codecommit.*.amazonaws.com
+  User APKAYHHGSQNP6YGL4GUQ
+Host bastion.iosyg.com
+  User paul
+  Port 1338
+#Host 172.30.0.* lightsout.int.iosyg.com
+#  ProxyCommand ssh paul@bastion.iosyg.com -W %h:%p
+Host *
+  ServerAliveInterval 60
+#  UseKeyChain yes
+  AddKeysToAgent yes
+  Ciphers aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes128-ctr
+#  PKCS11Provider /usr/lib64/pkcs11/opensc-pkcs11.so

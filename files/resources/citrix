@@ -1,0 +1,2 @@
+#!/bin/bash
+x11docker --ps --hostdisplay --hostipc --hostnet --gpu --clipboard --pulseaudio --alsa --webcam --printer --homedir="${HOME}" --hostdbus -- citrix-workspace:latest /opt/Citrix/ICAClient/wfica.sh "$(ls -1tr ${HOME}/Downloads/*.ica | tail -n 1)"

@@ -1,0 +1,7 @@
+master: nf7.int.desharq.com
+restart_on_error: True
+
+recon_default: 10000
+recon_max: 59000
+recon_randomize: True
+

@@ -1,0 +1,19 @@
+FROM devbox-vim:latest
+ARG devusername=paul
+
+ENV DISPLAY=:0
+ENV WAYLAND_DISPLAY=wayland-0
+ENV XDG_SESSION_CLASS=user
+ENV XKB_DEFAULT_LAYOUT=pl
+ENV XKB_DEFAULT_OPTIONS=caps:ctrl_modifier
+ENV XDG_RUNTIME_DIR=/run/user/1000
+ENV SSH_AUTH_SOCK=/tmp/ssh-paul-sock
+ENV EDITOR=vim
+ENV TERM=xterm-256color
+ENV DOCKER_HOST=tcp://127.0.0.1
+ENV _JAVA_AWT_WM_NONREPARENTING=1
+
+COPY files-setup.sh /tmp
+RUN mkdir -p /tmp/files
+COPY files/resources /tmp/files/resources
+RUN cd /tmp && bash files-setup.sh ${devusername}

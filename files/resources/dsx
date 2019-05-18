@@ -1,0 +1,29 @@
+#!/bin/bash
+ docker run -d -v /tmp:/tmp \
+    -v /run/user/${UID}/wayland-0:/run/user/${UID}/wayland-0 \
+    -v /etc/passwd:/etc/passwd -v /etc/group:/etc/group -v /etc/shadow:/etc/shadow \
+    -v /dev/dri:/dev/dri \
+    -v /home/${USER}/devbox:/home/${USER}/devbox \
+    -v /home/${USER}/.IdeaIC2019.1:/home/${USER}/.IdeaIC2019.1 \
+    -v /home/${USER}/.npm:/home/${USER}/.npm \
+    -v /home/${USER}/.aws:/home/${USER}/.aws \
+    -v /home/${USER}/.cargo:/home/${USER}/.cargo \
+    -v /home/${USER}/.cpan:/home/${USER}/.cpan \
+    -v /home/${USER}/.m2:/home/${USER}/.m2 \
+    -v /home/${USER}/.gnupg:/home/${USER}/.gnupg \
+    -v /home/${USER}/.java:/home/${USER}/.java \
+    -v /home/${USER}/.config:/home/${USER}/.config \
+    -v /home/${USER}/.local:/home/${USER}/.local \
+    -v /home/${USER}/.ssh/known_hosts:/home/${USER}/.ssh/known_hosts \
+    -v /run/user/${UID}/gnupg/S.gpg-agent.ssh:/tmp/S.gpg-agent.ssh \
+    -e DEVCONTAINER=true \
+    --group-add $(cat /etc/group | grep video | cut -d : -f 3) \
+    --user=${UID} \
+    --net=host \
+    --ipc=host \
+    --hostname=devbox \
+    --ulimit nofile=122880:122880 \
+    -w /home/${USER} \
+    --rm \
+    devbox \
+    $@
