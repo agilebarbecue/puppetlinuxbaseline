@@ -1,4 +1,8 @@
 #!/bin/bash -x
+
+# this is the dotfiles and other tweaks that are used by the dev environment, not software per se
+# and also some tidying up of directories including the home directory for the dev user
+
 devusername=$1
 
 useradd -u 1000 ${devusername}
