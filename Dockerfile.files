@@ -1,5 +1,6 @@
 FROM devbox-vim:latest
 ARG devusername=paul
+ARG homedir=/home
 
 ENV DISPLAY=:0
 ENV WAYLAND_DISPLAY=wayland-0
@@ -16,4 +17,4 @@ ENV _JAVA_AWT_WM_NONREPARENTING=1
 COPY files-setup.sh /tmp
 RUN mkdir -p /tmp/files
 COPY files/resources /tmp/files/resources
-RUN cd /tmp && bash files-setup.sh ${devusername}
+RUN cd /tmp && bash files-setup.sh ${devusername} ${homedir}

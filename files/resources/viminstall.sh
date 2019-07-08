@@ -1,8 +1,10 @@
 #!/bin/bash
 DEVUSERNAME=$1
-mkdir -p /home/${DEVUSERNAME}/.vim/bundle
-mkdir -p /home/${DEVUSERNAME}/.vim/after/ftplugin
-cd /home/${DEVUSERNAME}/.vim/bundle
+home=$2
+
+mkdir -p ${home}/${DEVUSERNAME}/.vim/bundle
+mkdir -p ${home}/${DEVUSERNAME}/.vim/after/ftplugin
+cd ${home}/${DEVUSERNAME}/.vim/bundle
 git clone https://github.com/ctrlpvim/ctrlp.vim.git
 git clone https://github.com/Valloric/YouCompleteMe.git
 git clone https://github.com/scrooloose/nerdtree.git
@@ -22,4 +24,4 @@ git submodule update --init --recursive
 python3 -m venv venv
 . venv/bin/activate
 ./install.py
-chown -R ${DEVUSERNAME} /home/${DEVUSERNAME}/.vim
+chown -R ${DEVUSERNAME} ${home}/${DEVUSERNAME}/.vim
