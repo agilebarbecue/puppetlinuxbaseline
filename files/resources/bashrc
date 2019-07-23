@@ -1,11 +1,9 @@
-if [ -z "$SSH_AUTH_SOCK" -o "$SSH_AUTH_SOCK" = "$HOME/.ssh/auth_sock" ] ; then
-  # vscode connection
-  # Direct vscode to use symlink, which we can set later.
-  export SSH_AUTH_SOCK=$HOME/.ssh/auth_sock
-else
-  # agent forwarding connection. 
-  # Direct agent symlink to the real port.
+if [ -S "$SSH_AUTH_SOCK" -a ! -L "$SSH_AUTH_SOCK" ] ; then
+  # when we get a real socket up front, link it to our named file
   ln -fs $SSH_AUTH_SOCK $HOME/.ssh/auth_sock
+else
+  # otherwise force the named file
+  export SSH_AUTH_SOCK=$HOME/.ssh/auth_sock
 fi
 
 alias ls='ls --color=auto'
