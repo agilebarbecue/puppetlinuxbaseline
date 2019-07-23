@@ -2,6 +2,7 @@
 
 # this is the dotfiles and other tweaks that are used by the dev environment, not software per se
 # and also some tidying up of directories including the home directory for the dev user
+# ok
 
 devusername=$1
 home=$2
