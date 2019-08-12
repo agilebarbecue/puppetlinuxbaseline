@@ -7,7 +7,4 @@ Host bastion.iosyg.com
 #  ProxyCommand ssh paul@bastion.iosyg.com -W %h:%p
 Host *
   ServerAliveInterval 60
-#  UseKeyChain yes
-  AddKeysToAgent yes
   Ciphers aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes128-ctr
-#  PKCS11Provider /usr/lib64/pkcs11/opensc-pkcs11.so
