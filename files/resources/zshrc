@@ -1,20 +1,55 @@
-# Path to your oh-my-zsh installation.
-  export ZSH=/home/paul/.oh-my-zsh
-
-ZSH_THEME="fishy"
-DISABLE_AUTO_UPDATE="true"
-DISABLE_UNTRACKED_FILES_DIRTY="true"
-HIST_STAMPS="yyyy-mm-dd"
-plugins=(git vi-mode docker docker-compose lein)
-
-# User configuration
-
-  export PATH="/opt/scala/bin:/opt/maven/bin:/opt/ant/bin:/opt/go/bin:/opt/node/bin:/opt/activator:/opt/gradle/bin:/opt/sbt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/paul/.rvm/bin"
-
-source $ZSH/oh-my-zsh.sh
+export SSH_AUTH_SOCK=$HOME/.sekey/ssh-agent.ssh
+alias ls="gls --color=auto"
+alias find=gfind
+set -o vi
 export EDITOR=vim
 
-export SSH_KEY_PATH="~/.ssh/rsa_id"
+# get current branch in git repo
+function parse_git_branch() {
+	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+	if [ ! "${BRANCH}" == "" ]
+	then
+		STAT=`parse_git_dirty`
+		echo "[${BRANCH}${STAT}]"
+	else
+		echo ""
+	fi
+}
 
-eval `keychain -q --eval --agents ssh id_rsa`
-unalias gg
+# get current status of git repo
+function parse_git_dirty {
+	status=`git status 2>&1 | tee`
+	dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
+	untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
+	ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
+	newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
+	renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
+	deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
+	bits=''
+	if [ "${renamed}" == "0" ]; then
+		bits=">${bits}"
+	fi
+	if [ "${ahead}" == "0" ]; then
+		bits="*${bits}"
+	fi
+	if [ "${newfile}" == "0" ]; then
+		bits="+${bits}"
+	fi
+	if [ "${untracked}" == "0" ]; then
+		bits="?${bits}"
+	fi
+	if [ "${deleted}" == "0" ]; then
+		bits="x${bits}"
+	fi
+	if [ "${dirty}" == "0" ]; then
+		bits="!${bits}"
+	fi
+	if [ ! "${bits}" == "" ]; then
+		echo " ${bits}"
+	else
+		echo ""
+	fi
+}
+
+setopt PROMPT_SUBST
+export PROMPT="%F{69}%D %T %n@%m:%/ $(parse_git_branch)%f"$'\n'"$ "
