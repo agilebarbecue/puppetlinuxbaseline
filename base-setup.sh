@@ -39,7 +39,7 @@ apt-get -yq install build-essential \
         p7zip-rar \
         p7zip-full \
         unrar \
-        vim-gnome \
+        vim-gtk3 \
         keychain \
         bup \
         ssh \
