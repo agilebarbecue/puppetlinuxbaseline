@@ -5,6 +5,9 @@ export DEBIAN_FRONTEND=noninteractive
 yes | unminimize && apt-get install -y man-db
 
 apt-get -yq install build-essential \
+        flex \
+        bison \
+        libelf-dev \
         adduser \
         automake \
         ca-certificates \
