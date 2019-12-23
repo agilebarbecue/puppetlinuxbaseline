@@ -5,11 +5,17 @@ export DEBIAN_FRONTEND=noninteractive
 yes | unminimize && apt-get install -y man-db
 
 apt-get -yq install build-essential \
+        extlinux \
+        dosfstools \
+        openssh-client \
+        netcat \
         flex \
+        bzip2 \
         bison \
         libelf-dev \
         adduser \
         automake \
+        libtool \
         ca-certificates \
         coreutils \
         dnsutils \
@@ -54,6 +60,7 @@ apt-get -yq install build-essential \
         libsqlite3-dev \
         libreadline-dev \
         libncurses-dev \
+        libncurses5-dev \
         libssl-dev \
         zlib1g-dev \
         liblzma-dev \
