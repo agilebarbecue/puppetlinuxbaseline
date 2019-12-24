@@ -101,3 +101,4 @@ apt-get -yq install build-essential \
         opensc \
         opensc-pkcs11
 
+snap install go --classic
