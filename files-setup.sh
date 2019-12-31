@@ -7,6 +7,20 @@
 devusername=$1
 home=$2
 
+if [ -z $devusername ]; then
+    echo "must provide username as first argument"
+    exit 1
+else
+    echo "username $devusername"
+fi
+
+if [ -z $home ]; then
+    echo "must provide home dir as second argument"
+    exit 1
+else
+    echo "home directory $home"
+fi
+
 useradd -u 1000 ${devusername}
 mkdir -p /usr/share/fonts/truetype /usr/share/fonts/freefont ${home}/${devusername}/.ssh ${home}/${devusername}/.config/Yubico/u2f_keys ${home}/${devusername}/.config/alacritty ${home}/${devusername}/.wireguard ${home}/${devusername}/.config/i3 /usr/share/applications /usr/share/gnome-session/sessions /usr/share/xsessions /etc/openvpn ${home}/${devusername}/.vim/autoload ${home}/${devusername}/.vim/after/ftplugin /etc/ssh/ ${home}/${devusername}/.config/kitty
 cp files/resources/selinux-config /etc/selinux/config
@@ -55,3 +69,14 @@ echo >/etc/security/limits.d/systemd.conf "* hard nofile 1048576"
 chown -R ${devusername}:${devusername} ${home}/${devusername}
 
 ln -sf $(find /opt -type d -name 'idea*' -maxdepth 1) /opt/idea 
+
+# more things which are one-time setup but not directly done in config files
+
+gsettings set \
+  org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ \
+  next-tab '<Primary>Tab'
+gsettings set \
+  org.gnome.Terminal.Legacy.Keybindings:/org/gnome/terminal/legacy/keybindings/ \
+  prev-tab '<Primary><Shift>Tab'
+
+echo "fs.aio-max-nr = 1048576" >> /etc/sysctl.conf
