@@ -80,3 +80,4 @@ gsettings set \
   prev-tab '<Primary><Shift>Tab'
 
 echo "fs.aio-max-nr = 1048576" >> /etc/sysctl.conf
+echo "vm.swappiness = 0" >> /etc/sysctl.conf
