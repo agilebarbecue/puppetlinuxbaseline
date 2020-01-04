@@ -22,7 +22,7 @@ else
 fi
 
 useradd -u 1000 ${devusername}
-mkdir -p /usr/share/fonts/truetype /usr/share/fonts/freefont ${home}/${devusername}/.ssh ${home}/${devusername}/.config/Yubico/u2f_keys ${home}/${devusername}/.config/alacritty ${home}/${devusername}/.wireguard ${home}/${devusername}/.config/i3 /usr/share/applications /usr/share/gnome-session/sessions /usr/share/xsessions /etc/openvpn ${home}/${devusername}/.vim/autoload ${home}/${devusername}/.vim/after/ftplugin /etc/ssh/ ${home}/${devusername}/.config/kitty
+mkdir -p /usr/share/fonts/truetype /usr/share/fonts/freefont ${home}/${devusername}/.config/Code/User ${home}/${devusername}/.ssh ${home}/${devusername}/.config/Yubico/u2f_keys ${home}/${devusername}/.config/alacritty ${home}/${devusername}/.wireguard ${home}/${devusername}/.config/i3 /usr/share/applications /usr/share/gnome-session/sessions /usr/share/xsessions /etc/openvpn ${home}/${devusername}/.vim/autoload ${home}/${devusername}/.vim/after/ftplugin /etc/ssh/ ${home}/${devusername}/.config/kitty
 cp files/resources/selinux-config /etc/selinux/config
 cp files/resources/noxisttf16.ttf /usr/share/fonts/truetype/freefont/noxisttf16.ttf
 cp files/resources/Interface-Regular.ttf /usr/share/fonts/truetype/freefont/Interface-Regular.ttf
@@ -61,6 +61,7 @@ cp files/resources/sshd_config /etc/ssh/sshd_config
 cp files/resources/kitty.conf ${home}/${devusername}/.config/kitty/kitty.conf
 cp files/resources/citrix /usr/local/bin/citrix
 cp files/resources/gg /usr/local/bin/gg
+cp files/resources/settings.json ${home}/${devusername}/.config/Code/User/settings.json
 
 chown -R ${devusername}:${devusername} ${home}/${devusername} && chmod 600 ${home}/${devusername}/.ssh/config /etc/ssh/sshd_config ${home}/${devusername}/.ssh/authorized_keys && chmod 555 ${home}/${devusername}/.bashrc /etc/git-prompt.sh /usr/local/bin/lein /usr/local/bin/gg /tmp/viminstall.sh /tmp/chromeinstall.sh /usr/local/bin/citrix /usr/bin/keychain
 

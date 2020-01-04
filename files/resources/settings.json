@@ -1,0 +1,17 @@
+{
+    "workbench.startupEditor": "newUntitledFile",
+    "editor.fontFamily": "'Iosevka Term SS08', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontSize": 20,
+    "editor.formatOnSave": true,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 5,
+    "workbench.colorCustomizations": {
+        "editor.background": "#181818",
+        "sideBar.background": "#181818",
+        "terminal.background": "#181818",
+        "statusBar.noFolderBackground": "#282828",
+        "statusBar.background": "#282828",
+        "statusBar.debuggingBackground": "#282828"
+    },
+    "terminal.integrated.fontSize": 20
+}
