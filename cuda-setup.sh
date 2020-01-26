@@ -13,6 +13,6 @@ sudo docker pull busybox
 sudo docker pull ubuntu:18.04
 sudo docker pull ubuntu:latest
 sudo docker pull alpine:latest
-sudo docker pull nvidia/cuda:10.0-cudnn7-devel-ubuntu18.04
+sudo docker pull nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
 sudo docker pull tensorflow/tensorflow:latest-gpu
-sudo docker pull tensorflow/tensorflow:2.0.0-gpu-py3-jupyter
+sudo docker pull tensorflow/tensorflow:2.1.0-gpu-py3-jupyter
