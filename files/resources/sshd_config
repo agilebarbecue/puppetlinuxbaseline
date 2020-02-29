@@ -17,7 +17,7 @@ KerberosAuthentication no
 GSSAPIAuthentication no
 GSSAPICleanupCredentials no
 UsePAM yes
-AllowAgentForwarding no
+AllowAgentForwarding yes
 AllowTcpForwarding yes
 X11Forwarding yes
 X11DisplayOffset 10
