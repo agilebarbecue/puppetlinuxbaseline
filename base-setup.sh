@@ -50,7 +50,6 @@ apt-get -yq install build-essential \
         unrar \
         vim-gtk3 \
         keychain \
-        bup \
         ssh \
         x264 \
         x265 \
