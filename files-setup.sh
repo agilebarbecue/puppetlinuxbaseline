@@ -69,7 +69,7 @@ echo >/etc/security/limits.d/systemd.conf "* hard nofile 1048576"
 
 chown -R ${devusername}:${devusername} ${home}/${devusername}
 
-ln -sf $(find /opt -type d -name 'idea*' -maxdepth 1) /opt/idea 
+#ln -sf $(find /opt -type d -name 'idea*' -maxdepth 1) /opt/idea 
 
 # more things which are one-time setup but not directly done in config files
 
