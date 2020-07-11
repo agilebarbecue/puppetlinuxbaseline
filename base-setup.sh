@@ -98,6 +98,7 @@ apt-get -yq install build-essential \
         firefox \
         docker.io \
         opensc \
-        opensc-pkcs11
+        opensc-pkcs11 \
+        openjdk-14-jdk
 
 snap install go --classic
