@@ -129,5 +129,15 @@ map <F7> :YcmCompleter GetDoc<CR>
 map <F6> :pclose!<CR>
 map <C-h> :bp<CR>
 map <C-l> :bn<CR>
+nmap <leader>y "ay
+nmap <leader>Y "aY
+nmap <leader>p "aP
+nmap <leader>P "aP
+vmap <leader>y "ay
+vmap <leader>Y "aY
+vmap <leader>p "aP
+vmap <leader>P "aP
+
+
 
 
