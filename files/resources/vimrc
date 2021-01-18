@@ -137,6 +137,7 @@ vmap <leader>y "ay
 vmap <leader>Y "aY
 vmap <leader>p "aP
 vmap <leader>P "aP
+nmap <leader>f !:ag  
 
 
 
